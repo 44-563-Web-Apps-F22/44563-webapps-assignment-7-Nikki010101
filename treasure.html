@@ -114,29 +114,63 @@
 
     </div>
     <script>
+         const ids = ["pic1","pic2","pic3","pic4","pic5","pic6","pic7","pic8","pic9","pic10",
+        "pic11","pic12","pic13","pic14","pic15","pic16","pic17","pic18","pic19","pic20","pic21","pic22",
+        "pic23","pic24","pic25"]
         
-        ids=["pic1","pic2","pic3","pic4","pic5","pic6","pic7","pic8","pic9","pic10","pic11","pic12","pic13","pic14","pic15","pic15","pic16","pic17","pic18","pic19","pic20","pic21","pic22","pic23","pic24","pic25"]
-        var chestCount=0
-        var score=0
-        var lastCheck=12
-        var treasureLocation=18
-        function check(position){
-            id=ids[position];
+    let chestCount = 0
+    let score = 0
+    let lastCheck = 12
+    let treasureLocation = 18
 
-                if(ids[position] == ids[treasureLocation])
-                {
-            document.getElementById(id).src="treasure.jpg"
+    function check(position) {
+        image = document.getElementById(ids[position])
+        if(position == treasureLocation) {
+            image.src = "treasure.jpg"
+        } else {
+            image.src = "sad.jpg"
+        }
             score++
-                 }
-            else
-                 {
-            document.getElementById(id).src="sad.jpg" 
-                 }
             chestCount++
+            
             document.getElementById("chests").innerHTML="Number of chests checked is "+chestCount;
-       document.getElementById("score").innerHTML="Score is "+score;
-       lastCheck=position;
+            document.getElementById("score").innerHTML="Score is "+score;
           
+        }
+        function help(){
+            let row=lastCheck%5
+            let col=lastCheck/5
+            score+=2
+            tCol=treasureLocation/5;
+            tRow=treasureLocation%5;
+           
+            if((row==tRow)&&(col>tCol)){
+            document.getElementById("help").innerHTML = "up"
+        }
+        else if((row==tRow)&&(col<tCol)){
+            document.getElementById("help").innerHTML = "down"
+        }
+        else if((row>tRow)&&(col==tCol)){
+            document.getElementById("help").innerHTML = "left"
+        }
+        else if((row<tRow)&&(col==tCol)){
+            document.getElementById("help").innerHTML = "right"
+        }
+        else{
+            document.getElementById("help").innerHTML = "Sorry, no help available"
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
 
